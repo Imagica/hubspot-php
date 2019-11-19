@@ -134,12 +134,12 @@ class Client
                 $query_params[$authType] = $this->key;
             }
 
-                if ($this->userId) {
+            if ($this->userId) {
                 $query_params['userId'] = $this->userId;
             }
 
             $query_string .= $this->addQuery($query_string, http_build_query($query_params));
-                }
+        }
 
         return $url.$query_string;
     }
