@@ -2,9 +2,13 @@
 
 namespace SevenShores\Hubspot\Tests\Integration\Resources;
 
-use SevenShores\Hubspot\Resources\Analytics;
 use SevenShores\Hubspot\Http\Client;
+use SevenShores\Hubspot\Resources\Analytics;
 
+/**
+ * @internal
+ * @coversNothing
+ */
 class AnalyticsTest extends \PHPUnit_Framework_TestCase
 {
     private $analytics;
@@ -12,12 +16,12 @@ class AnalyticsTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         parent::setUp();
-        $this->analytics = new Blogs(new Client(['key' => 'demo']));
+        $this->analytics = new Analytics(new Client(['key' => getenv('HUBSPOT_TEST_API_KEY')]));
         sleep(1);
     }
 
     /** @test */
-    public function get_by_category()
+    public function getByCategory()
     {
         $response = $this->analytics->getByCategory('totals', 'total', '20180101', '20180301');
 
@@ -25,7 +29,7 @@ class AnalyticsTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function get_by_type()
+    public function getByType()
     {
         $response = $this->analytics->getByType('forms', 'total', '20180101', '20180301');
 
@@ -33,7 +37,7 @@ class AnalyticsTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function get_hosted()
+    public function getHosted()
     {
         $response = $this->analytics->getHosted('standard-pages', 'total', '20180101', '20180301');
 
@@ -41,7 +45,7 @@ class AnalyticsTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function get_views()
+    public function getViews()
     {
         $response = $this->analytics->getViews();
 
@@ -49,23 +53,7 @@ class AnalyticsTest extends \PHPUnit_Framework_TestCase
     }
 
     /** @test */
-    public function get_events_by_id()
-    {
-        $response = $this->analytics->getEventById('000000142311');
-
-        $this->assertEquals(200, $response->getStatusCode());
-    }
-
-    /** @test */
-    public function get_event_by_id_with_params()
-    {
-        $response = $this->analytics->getEventById('000000142311', ['id' => '000000142312']);
-
-        $this->assertEquals(200, $response->getStatusCode());
-    }
-
-    /** @test */
-    public function check_for_analytics_data_existence()
+    public function checkForAnalyticsDataExistence()
     {
         $response = $this->analytics->checkForExistence('event-completions');
 

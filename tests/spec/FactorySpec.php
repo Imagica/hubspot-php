@@ -3,117 +3,101 @@
 namespace spec\SevenShores\Hubspot;
 
 use PhpSpec\ObjectBehavior;
-use Prophecy\Argument;
 
 class FactorySpec extends ObjectBehavior
 {
-    function let()
+    public function let()
     {
-        $this->beConstructedThrough('make', ['demo']);
+        $this->beConstructedThrough('create', ['demo']);
     }
 
-    function it_is_initializable()
+    public function it_is_initializable()
     {
-        $this->shouldHaveType('SevenShores\Hubspot\HubSpotService');
+        $this->shouldHaveType('SevenShores\Hubspot\Factory');
     }
 
-    function it_throws_a_hubspot_exception_from_uninstantiable_api_class()
+    public function it_creates_a_blogs_api_class()
     {
-        $this->shouldThrow('\SevenShores\Hubspot\Exceptions\HubSpotException')->during('api');
+        $this->blogs()->shouldHaveType('SevenShores\Hubspot\Resources\Blogs');
     }
 
-    function it_throws_a_reflection_exception_from_nonexistent_api_class()
+    public function it_creates_a_blogAuthors_api_class()
     {
-        $this->shouldThrow('\ReflectionException')->during('doesntExist');
+        $this->blogAuthors()->shouldHaveType('SevenShores\Hubspot\Resources\BlogAuthors');
     }
 
-    function it_creates_a_blogs_api_class()
+    public function it_creates_a_blogPosts_api_class()
     {
-        $this->blogs()->shouldHaveType('SevenShores\Hubspot\Api\Blogs');
+        $this->blogPosts()->shouldHaveType('SevenShores\Hubspot\Resources\BlogPosts');
     }
 
-    function it_creates_a_blogAuthors_api_class()
+    public function it_creates_a_blogTopics_api_class()
     {
-        $this->blogAuthors()->shouldHaveType('SevenShores\Hubspot\Api\BlogAuthors');
+        $this->blogTopics()->shouldHaveType('SevenShores\Hubspot\Resources\BlogTopics');
     }
 
-    function it_creates_a_blogPosts_api_class()
+    public function it_creates_a_contacts_api_class()
     {
-        $this->blogPosts()->shouldHaveType('SevenShores\Hubspot\Api\BlogPosts');
+        $this->contacts()->shouldHaveType('SevenShores\Hubspot\Resources\Contacts');
     }
 
-    function it_creates_a_blogTopics_api_class()
+    public function it_creates_a_contactLists_api_class()
     {
-        $this->blogTopics()->shouldHaveType('SevenShores\Hubspot\Api\BlogTopics');
+        $this->contactLists()->shouldHaveType('SevenShores\Hubspot\Resources\ContactLists');
     }
 
-    function it_creates_a_contacts_api_class()
+    public function it_creates_a_contactProperties_api_class()
     {
-        $this->contacts()->shouldHaveType('SevenShores\Hubspot\Api\Contacts');
+        $this->contactProperties()->shouldHaveType('SevenShores\Hubspot\Resources\ContactProperties');
     }
 
-    function it_creates_a_contactLists_api_class()
+    public function it_creates_a_email_api_class()
     {
-        $this->contactLists()->shouldHaveType('SevenShores\Hubspot\Api\ContactLists');
+        $this->email()->shouldHaveType('SevenShores\Hubspot\Resources\Email');
     }
 
-    function it_creates_a_contactProperties_api_class()
+    public function it_creates_a_emailEvents_api_class()
     {
-        $this->contactProperties()->shouldHaveType('SevenShores\Hubspot\Api\ContactProperties');
+        $this->emailEvents()->shouldHaveType('SevenShores\Hubspot\Resources\EmailEvents');
     }
 
-    function it_creates_a_email_api_class()
+    public function it_creates_a_files_api_class()
     {
-        $this->email()->shouldHaveType('SevenShores\Hubspot\Api\Email');
+        $this->files()->shouldHaveType('SevenShores\Hubspot\Resources\Files');
     }
 
-    function it_creates_a_emailEvents_api_class()
+    public function it_creates_a_forms_api_class()
     {
-        $this->emailEvents()->shouldHaveType('SevenShores\Hubspot\Api\EmailEvents');
+        $this->forms()->shouldHaveType('SevenShores\Hubspot\Resources\Forms');
     }
 
-    function it_creates_a_files_api_class()
+    public function it_creates_a_keywords_api_class()
     {
-        $this->files()->shouldHaveType('SevenShores\Hubspot\Api\Files');
+        $this->keywords()->shouldHaveType('SevenShores\Hubspot\Resources\Keywords');
     }
 
-    function it_creates_a_forms_api_class()
+    public function it_creates_a_pages_api_class()
     {
-        $this->forms()->shouldHaveType('SevenShores\Hubspot\Api\Forms');
+        $this->pages()->shouldHaveType('SevenShores\Hubspot\Resources\Pages');
     }
 
-    function it_creates_a_keywords_api_class()
+    public function it_creates_a_socialMedia_api_class()
     {
-        $this->keywords()->shouldHaveType('SevenShores\Hubspot\Api\Keywords');
+        $this->socialMedia()->shouldHaveType('SevenShores\Hubspot\Resources\SocialMedia');
     }
 
-    function it_creates_a_marketPlace_api_class()
+    public function it_creates_a_workflows_api_class()
     {
-        $this->marketPlace()->shouldHaveType('SevenShores\Hubspot\Api\MarketPlace');
+        $this->workflows()->shouldHaveType('SevenShores\Hubspot\Resources\Workflows');
     }
 
-    function it_creates_a_pages_api_class()
+    public function it_creates_an_events_api_class()
     {
-        $this->pages()->shouldHaveType('SevenShores\Hubspot\Api\Pages');
+        $this->events()->shouldHaveType('SevenShores\Hubspot\Resources\Events');
     }
 
-    function it_creates_a_socialMedia_api_class()
+    public function it_creates_a_company_properties_api_class()
     {
-        $this->socialMedia()->shouldHaveType('SevenShores\Hubspot\Api\SocialMedia');
-    }
-
-    function it_creates_a_workflows_api_class()
-    {
-        $this->workflows()->shouldHaveType('SevenShores\Hubspot\Api\Workflows');
-    }
-
-    function it_creates_an_events_api_class()
-    {
-        $this->events()->shouldHaveType('SevenShores\Hubspot\Api\Events');
-    }
-
-    function it_creates_a_company_properties_api_class()
-    {
-        $this->companyProperties()->shouldHaveType('SevenShores\Hubspot\Api\CompanyProperties');
+        $this->companyProperties()->shouldHaveType('SevenShores\Hubspot\Resources\CompanyProperties');
     }
 }
